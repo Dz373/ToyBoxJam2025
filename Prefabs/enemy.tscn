@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://ctjgor6p44y3l"]
+
+[ext_resource type="Script" uid="uid://bb77yg253jfsv" path="res://Scripts/enemy.gd" id="1_lgw76"]
+[ext_resource type="Texture2D" uid="uid://pig006h42f7y" path="res://Assets/tbj2_sprites_16x16_transparent_6-1.png" id="2_t4g6b"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_govpq"]
+radius = 39.012817
+
+[node name="Enemy" type="Node2D"]
+script = ExtResource("1_lgw76")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_t4g6b")
+hframes = 16
+vframes = 16
+frame = 123
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_govpq")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

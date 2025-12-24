@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://cbbe1210jvdxp"]
+
+[ext_resource type="Texture2D" uid="uid://pig006h42f7y" path="res://Assets/tbj2_sprites_16x16_transparent_6-1.png" id="1_0oen4"]
+[ext_resource type="Script" uid="uid://brhxveepilgu" path="res://Scripts/bullet.gd" id="1_m4f65"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_m4f65"]
+radius = 13.0
+height = 62.0
+
+[node name="Bullet" type="Node2D"]
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_m4f65")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_0oen4")
+hframes = 16
+vframes = 16
+frame = 78
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 12
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-4, 3)
+shape = SubResource("CapsuleShape2D_m4f65")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
