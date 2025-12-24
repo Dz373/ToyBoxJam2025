@@ -3,9 +3,9 @@ extends Node2D
 @export var health = 3
 @export var atk_speed := 1.0
 
-var straight_shot = Projectile
-var side_shot = Projectile
-var diagonal_shot = Projectile
+var straight_shot
+var side_shot
+var diagonal_shot
 
 @onready var straight_shot_timer = $StraightTimer
 @onready var side_shot_timer = $SideTimer

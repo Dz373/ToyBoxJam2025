@@ -1,6 +1,11 @@
 extends Node2D
+class_name GameManager
+
+@onready var ship = $Ship
 
 var enemy_prefab
+
+var score = 0
 
 func _ready() -> void:
 	enemy_prefab = preload("res://Prefabs/enemy.tscn")
