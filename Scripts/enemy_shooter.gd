@@ -11,7 +11,6 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	return
-	
 
 func _on_timer_timeout() -> void:
 	var ship = get_parent().ship

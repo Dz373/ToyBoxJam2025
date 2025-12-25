@@ -11,6 +11,9 @@ var direction := Vector2.UP
 var pierce := 0
 var number := 1
 
+@export var sprite_index : int
+@export var sprites : Array[Texture]
+
 func _process(delta: float) -> void:
 	position += direction * speed * delta
 
