@@ -1,18 +1,14 @@
-[gd_scene load_steps=6 format=3 uid="uid://cmoxblrto1f12"]
+[gd_scene load_steps=4 format=3 uid="uid://cmoxblrto1f12"]
 
 [ext_resource type="Script" uid="uid://b8872hswf5pce" path="res://Scripts/game_manager.gd" id="1_h2yge"]
 [ext_resource type="PackedScene" uid="uid://cesqbjhs8s37a" path="res://Prefabs/ship.tscn" id="1_ig7tw"]
-[ext_resource type="PackedScene" uid="uid://h7gsca86kvkn" path="res://Prefabs/enemy_shooter.tscn" id="3_h2yge"]
 [ext_resource type="PackedScene" uid="uid://dgbug5muo7j67" path="res://Prefabs/ship_health.tscn" id="4_1bvp3"]
-[ext_resource type="PackedScene" uid="uid://ckmrb3cypf1x8" path="res://Prefabs/powerup.tscn" id="5_lquwl"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_h2yge")
+enemy_weights = Array[PackedScene]([null, null])
 
 [node name="Ship" parent="." instance=ExtResource("1_ig7tw")]
-
-[node name="EnemyShooter" parent="." instance=ExtResource("3_h2yge")]
-position = Vector2(576, -64)
 
 [node name="EnemySpawnTimer" type="Timer" parent="."]
 wait_time = 5.0
@@ -23,9 +19,5 @@ autostart = true
 [node name="ShipHealth" parent="UI" instance=ExtResource("4_1bvp3")]
 offset_right = 0.0
 offset_bottom = 0.0
-
-[node name="Powerup" parent="." instance=ExtResource("5_lquwl")]
-position = Vector2(400, -176)
-type_index = 3
 
 [connection signal="timeout" from="EnemySpawnTimer" to="." method="_on_enemy_spawn_timer_timeout"]

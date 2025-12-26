@@ -23,7 +23,6 @@ func _ready() -> void:
 	diagonal_shot.number = 0
 	
 	bullet_prefab = preload("res://Prefabs/bullet.tscn")
-	
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
@@ -61,8 +60,6 @@ func update_health(hp: int):
 		return
 	health += hp
 	game_manager.health_bar.update_hearts(health)
-	
-	
 	
 	if health <= 0:
 		print("Game Over")
