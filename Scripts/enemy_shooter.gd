@@ -9,8 +9,10 @@ func _ready() -> void:
 	
 	bullet_prefab = preload("res://Prefabs/enemy_projectile.tscn")
 
-func _process(_delta: float) -> void:
-	return
+func _process(delta: float) -> void:
+	if position.y >= 64:
+		return
+	position += Vector2.DOWN * speed * delta
 
 func _on_timer_timeout() -> void:
 	var ship = get_parent().ship

@@ -7,6 +7,7 @@ var straight_shot
 var side_shot
 var diagonal_shot
 
+@onready var game_manager = $".."
 @onready var straight_shot_timer = $StraightTimer
 @onready var side_shot_timer = $SideTimer
 @onready var diagonal_shot_timer = $DiagonalTimer
@@ -53,6 +54,15 @@ func  _on_diagonal_timer_timeout() -> void:
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	area.get_parent().queue_free()
-	health -= 1
+	update_health(-1)
+
+func update_health(hp: int):
+	if health + hp > 3:
+		return
+	health += hp
+	game_manager.health_bar.update_hearts(health)
+	
+	
+	
 	if health <= 0:
 		print("Game Over")

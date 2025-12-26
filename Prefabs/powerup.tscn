@@ -9,8 +9,7 @@ radius = 32.0
 [node name="Powerup" type="Node2D"]
 script = ExtResource("1_0ks08")
 speed = 100
-type_index = 1
-sprites = [null]
+sprites = Array[Texture]([null, null, null])
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.5, 0.5)

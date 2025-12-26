@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://dgbug5muo7j67"]
+
+[ext_resource type="Script" uid="uid://d21hxwijctoog" path="res://Scripts/ship_health.gd" id="1_hd8iq"]
+[ext_resource type="Texture2D" uid="uid://pig006h42f7y" path="res://Assets/tbj2_sprites_16x16_transparent_6-1.png" id="2_sj6tt"]
+
+[node name="ShipHealth" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 192.0
+offset_bottom = 64.0
+script = ExtResource("1_hd8iq")
+
+[node name="Heart1" type="Sprite2D" parent="."]
+position = Vector2(32, 32)
+texture = ExtResource("2_sj6tt")
+hframes = 16
+vframes = 16
+frame = 64
+
+[node name="Heart2" type="Sprite2D" parent="."]
+position = Vector2(96, 32)
+texture = ExtResource("2_sj6tt")
+hframes = 16
+vframes = 16
+frame = 64
+
+[node name="Heart3" type="Sprite2D" parent="."]
+position = Vector2(160, 32)
+texture = ExtResource("2_sj6tt")
+hframes = 16
+vframes = 16
+frame = 64

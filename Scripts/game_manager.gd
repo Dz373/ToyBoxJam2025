@@ -2,6 +2,7 @@ extends Node2D
 class_name GameManager
 
 @onready var ship = $Ship
+@onready var health_bar = $UI/ShipHealth
 
 var enemy_prefab
 

@@ -13,11 +13,13 @@ func _process(delta: float) -> void:
 func _on_area_2d_area_entered(_area: Area2D) -> void:
 	var ship = get_parent().ship
 	match type_index:
-		1:
+		0:
 			ship.straight_shot.number += 1
-		2:
+		1:
 			ship.side_shot.number += 1
-		3:
+		2:
 			ship.diagonal_shot.number += 1
+		3:
+			ship.update_health(1)
 	
 	queue_free()
