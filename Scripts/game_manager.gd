@@ -10,13 +10,28 @@ var enemy_prefab
 
 var score = 0
 
-func _ready() -> void:
-	enemy_prefab = preload("res://Prefabs/enemy.tscn")
-
 func _on_enemy_spawn_timer_timeout() -> void:
 	var xpos = randi_range(100, 1050)
 	
-	var new_enemy = enemy_prefab.instantiate()
+	var new_enemy = get_random_enemy().instantiate()
 	new_enemy.position = Vector2(xpos, -100)
 	
 	add_child(new_enemy)
+
+func get_random_enemy()->PackedScene:
+	var weight_total = 0
+	for i in enemy_weights:
+		weight_total += i
+	
+	var random_val = randi_range(1,weight_total)
+	var prev_weight = 0
+	var index = 0
+	for i in enemy_weights:
+		prev_weight += i
+		
+		if random_val <= prev_weight:
+			return enemies[index]
+		
+		index += 1
+	
+	return enemies[index]
