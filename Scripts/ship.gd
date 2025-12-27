@@ -20,7 +20,7 @@ func _ready() -> void:
 	diagonal_shot = Projectile.new()
 	
 	side_shot.number = 0
-	diagonal_shot.number = 1
+	diagonal_shot.number = 0
 	
 	bullet_prefab = preload("res://Prefabs/bullet.tscn")
 
