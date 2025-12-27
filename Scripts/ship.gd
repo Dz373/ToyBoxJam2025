@@ -20,7 +20,7 @@ func _ready() -> void:
 	diagonal_shot = Projectile.new()
 	
 	side_shot.number = 0
-	diagonal_shot.number = 0
+	diagonal_shot.number = 1
 	
 	bullet_prefab = preload("res://Prefabs/bullet.tscn")
 
@@ -46,8 +46,8 @@ func  _on_side_timer_timeout() -> void:
 
 func  _on_diagonal_timer_timeout() -> void:
 	for i in diagonal_shot.number:
-		shoot(diagonal_shot, Vector2(1,-1).normalized())
-		shoot(diagonal_shot, Vector2(-1,-1).normalized())
+		shoot(diagonal_shot, Vector2(1,-2).normalized())
+		shoot(diagonal_shot, Vector2(-1,-2).normalized())
 		await get_tree().create_timer(0.1).timeout
 
 

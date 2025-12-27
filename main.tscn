@@ -23,4 +23,12 @@ autostart = true
 offset_right = 0.0
 offset_bottom = 0.0
 
+[node name="ScoreCounter" type="Label" parent="UI"]
+offset_left = 960.0
+offset_top = 8.0
+offset_right = 1081.0
+offset_bottom = 53.0
+theme_override_font_sizes/font_size = 32
+text = "Score: 0"
+
 [connection signal="timeout" from="EnemySpawnTimer" to="." method="_on_enemy_spawn_timer_timeout"]

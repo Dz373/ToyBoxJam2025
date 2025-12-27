@@ -3,12 +3,16 @@ class_name GameManager
 
 @onready var ship = $Ship
 @onready var health_bar = $UI/ShipHealth
+@onready var score_counter = $UI/ScoreCounter
 
 var enemy_prefab
 @export var enemy_weights : Array[int]
 @export var enemies : Array[PackedScene]
 
-var score = 0
+var score = 0:
+	set(val):
+		score = val
+		score_counter.text = "Score: " + str(score)
 
 func _on_enemy_spawn_timer_timeout() -> void:
 	var xpos = randi_range(100, 1050)
