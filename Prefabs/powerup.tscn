@@ -1,19 +1,86 @@
-[gd_scene load_steps=4 format=3 uid="uid://ckmrb3cypf1x8"]
+[gd_scene load_steps=5 format=3 uid="uid://ckmrb3cypf1x8"]
 
 [ext_resource type="Script" uid="uid://dh4a13nxvthnw" path="res://Scripts/powerup.gd" id="1_0ks08"]
-[ext_resource type="Texture2D" uid="uid://c53jdwe53h1gf" path="res://icon.svg" id="2_j21wu"]
+[ext_resource type="Texture2D" uid="uid://pig006h42f7y" path="res://Assets/tbj2_sprites_16x16_transparent_6-1.png" id="2_j21wu"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j21wu"]
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 45
+corner_radius_top_right = 45
+corner_radius_bottom_right = 45
+corner_radius_bottom_left = 45
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_j21wu"]
 radius = 32.0
 
-[node name="Powerup" type="Node2D"]
+[node name="Powerup" type="Node2D" node_paths=PackedStringArray("sprites")]
 script = ExtResource("1_0ks08")
 speed = 100
-sprites = Array[Texture]([null, null, null])
+sprites = [NodePath("Sprites/Straight"), NodePath("Sprites/Side"), NodePath("Sprites/Diagonal")]
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprites" type="Node2D" parent="."]
+scale = Vector2(0.75, 0.75)
+
+[node name="Panel" type="Panel" parent="Sprites"]
+offset_left = -44.0
+offset_top = -44.0
+offset_right = 44.0
+offset_bottom = 44.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_j21wu")
+
+[node name="Straight" type="Sprite2D" parent="Sprites"]
+visible = false
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_j21wu")
+hframes = 16
+vframes = 16
+frame = 78
+
+[node name="Side" type="Node2D" parent="Sprites"]
+visible = false
+
+[node name="Sprite2D" type="Sprite2D" parent="Sprites/Side"]
+position = Vector2(-20, 0)
+rotation = -1.5707964
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_j21wu")
+hframes = 16
+vframes = 16
+frame = 78
+
+[node name="Sprite2D2" type="Sprite2D" parent="Sprites/Side"]
+position = Vector2(20, 0)
+rotation = -1.5707964
+scale = Vector2(0.5, -0.5)
+texture = ExtResource("2_j21wu")
+hframes = 16
+vframes = 16
+frame = 78
+
+[node name="Diagonal" type="Node2D" parent="Sprites"]
+visible = false
+
+[node name="Sprite2D" type="Sprite2D" parent="Sprites/Diagonal"]
+position = Vector2(-16.000002, 0)
+rotation = -0.7853982
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_j21wu")
+hframes = 16
+vframes = 16
+frame = 78
+
+[node name="Sprite2D2" type="Sprite2D" parent="Sprites/Diagonal"]
+position = Vector2(16, 0)
+rotation = -2.3561945
+scale = Vector2(0.5, -0.5)
+texture = ExtResource("2_j21wu")
+hframes = 16
+vframes = 16
+frame = 78
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 16

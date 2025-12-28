@@ -185,7 +185,7 @@ sources/0 = SubResource("TileSetAtlasSource_272bh")
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_h2yge")
-enemy_weights = Array[int]([3, 1])
+enemy_weights = Array[int]([4, 1])
 enemies = Array[PackedScene]([ExtResource("2_lquwl"), ExtResource("3_h2yge")])
 
 [node name="UI" type="CanvasLayer" parent="."]
@@ -204,7 +204,6 @@ theme_override_font_sizes/font_size = 32
 text = "Score: 0"
 
 [node name="EnemySpawnTimer" type="Timer" parent="."]
-wait_time = 5.0
 autostart = true
 
 [node name="Parallax2D" type="Parallax2D" parent="."]

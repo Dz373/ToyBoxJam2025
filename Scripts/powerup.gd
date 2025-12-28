@@ -2,13 +2,12 @@ extends Node2D
 
 @export var speed : int
 @export var type_index : int
-@export var sprites : Array[Texture]
+@export var sprites : Array[Node2D]
 
-@onready var sprite = $Sprite2D
 
 func _ready() -> void:
 	type_index = randi_range(0,sprites.size()-1)
-	#sprite.texture = sprites[type_index]
+	sprites[type_index].visible = true
 	
 
 func _process(delta: float) -> void:
