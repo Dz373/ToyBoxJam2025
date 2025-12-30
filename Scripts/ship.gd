@@ -6,6 +6,8 @@ extends Node2D
 var straight_shot
 var side_shot
 var diagonal_shot
+var explosion_shot
+var tracking_shot
 
 @onready var game_manager = $".."
 @onready var straight_shot_timer = $StraightTimer
@@ -13,16 +15,20 @@ var diagonal_shot
 @onready var diagonal_shot_timer = $DiagonalTimer
 
 var bullet_prefab
+var explosion_prefab
 
 func _ready() -> void:
 	straight_shot = Projectile.new()
 	side_shot = Projectile.new()
 	diagonal_shot = Projectile.new()
+	explosion_shot = Explosion.new()
+	tracking_shot = Projectile.new()
 	
-	side_shot.number = 0
-	diagonal_shot.number = 0
+	straight_shot.number = 0
+	explosion_shot.number = 1
 	
 	bullet_prefab = preload("res://Prefabs/bullet.tscn")
+	explosion_prefab = preload("res://Prefabs/explosion.tscn")
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
@@ -63,3 +69,12 @@ func update_health(hp: int):
 	
 	if health <= 0:
 		print("Game Over")
+
+
+func _on_explosion_timer_timeout() -> void:
+	for i in explosion_shot.number:
+		var shot = explosion_prefab.instantiate()
+		shot.instantiate_projectile(explosion_shot, Vector2.UP, position)
+		get_parent().add_child(shot)
+		
+		await get_tree().create_timer(0.5).timeout

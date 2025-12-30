@@ -3,16 +3,12 @@ class_name Projectile
 
 var damage := 1
 var speed := 500
-var cooldown := 1
 var on_cd := false
 
 var direction := Vector2.UP
 
 var pierce := 0
-var number := 1
-
-@export var sprite_index : int
-@export var sprites : Array[Texture]
+var number := 0
 
 func _process(delta: float) -> void:
 	position += direction * speed * delta

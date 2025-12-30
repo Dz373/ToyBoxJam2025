@@ -1,0 +1,228 @@
+[gd_scene load_steps=8 format=3 uid="uid://d384f18b0rxdd"]
+
+[ext_resource type="Script" uid="uid://b8yqxgschcjaw" path="res://Scripts/explosion_shot.gd" id="1_nfi1t"]
+[ext_resource type="Texture2D" uid="uid://pig006h42f7y" path="res://Assets/tbj2_sprites_16x16_transparent_6-1.png" id="2_g0hho"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_g0hho"]
+radius = 8.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_eplxj"]
+radius = 8.0
+
+[sub_resource type="Animation" id="Animation_g0hho"]
+resource_name = "ex"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("1:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.19999999, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [67, 68, 69, 70]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("2:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.19999999, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [67, 68, 69, 70]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("3:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.19999999, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [67, 68, 69, 70]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("4:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.19999999, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [67, 68, 69, 70]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../Area2D/CollisionShape2D:shape")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.13333334),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [SubResource("CircleShape2D_eplxj")]
+}
+
+[sub_resource type="Animation" id="Animation_eplxj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("1:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [69]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("2:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [67]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("3:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [67]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("4:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [67]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../Area2D/CollisionShape2D:shape")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [SubResource("CircleShape2D_g0hho")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_eplxj"]
+_data = {
+&"RESET": SubResource("Animation_eplxj"),
+&"ex": SubResource("Animation_g0hho")
+}
+
+[node name="Explosion" type="Node2D"]
+script = ExtResource("1_nfi1t")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_g0hho")
+hframes = 16
+vframes = 16
+frame = 72
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 12
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_g0hho")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="Blast" type="Node2D" parent="."]
+visible = false
+
+[node name="1" type="Sprite2D" parent="Blast"]
+position = Vector2(-32, -32)
+texture = ExtResource("2_g0hho")
+hframes = 16
+vframes = 16
+frame = 69
+
+[node name="2" type="Sprite2D" parent="Blast"]
+position = Vector2(32, -32)
+rotation = 1.5707964
+texture = ExtResource("2_g0hho")
+hframes = 16
+vframes = 16
+frame = 67
+
+[node name="3" type="Sprite2D" parent="Blast"]
+position = Vector2(32, 32)
+rotation = 3.1415927
+texture = ExtResource("2_g0hho")
+hframes = 16
+vframes = 16
+frame = 67
+
+[node name="4" type="Sprite2D" parent="Blast"]
+position = Vector2(-32, 32)
+rotation = 4.712389
+texture = ExtResource("2_g0hho")
+hframes = 16
+vframes = 16
+frame = 67
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Blast"]
+libraries = {
+&"": SubResource("AnimationLibrary_eplxj")
+}
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

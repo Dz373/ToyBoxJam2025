@@ -187,6 +187,7 @@ sources/0 = SubResource("TileSetAtlasSource_272bh")
 script = ExtResource("1_h2yge")
 enemy_weights = Array[int]([4, 1])
 enemies = Array[PackedScene]([ExtResource("2_lquwl"), ExtResource("3_h2yge")])
+can_spawn = Array[bool]([true, false])
 
 [node name="UI" type="CanvasLayer" parent="."]
 
@@ -203,7 +204,14 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 32
 text = "Score: 0"
 
+[node name="UpgradeCounter" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
 [node name="EnemySpawnTimer" type="Timer" parent="."]
+wait_time = 5.0
 autostart = true
 
 [node name="Parallax2D" type="Parallax2D" parent="."]

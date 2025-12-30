@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://d384f18b0rxdd"]
+
+[ext_resource type="Script" uid="uid://b8yqxgschcjaw" path="res://Scripts/explosion_shot.gd" id="1_nfi1t"]
+[ext_resource type="Texture2D" uid="uid://pig006h42f7y" path="res://Assets/tbj2_sprites_16x16_transparent_6-1.png" id="2_g0hho"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_g0hho"]
+radius = 27.0
+
+[node name="Explosion" type="Node2D"]
+script = ExtResource("1_nfi1t")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_g0hho")
+hframes = 16
+vframes = 16
+frame = 72
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 12
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_g0hho")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

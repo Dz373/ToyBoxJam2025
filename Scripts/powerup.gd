@@ -4,9 +4,11 @@ extends Node2D
 @export var type_index : int
 @export var sprites : Array[Node2D]
 
+var ship
 
 func _ready() -> void:
-	type_index = randi_range(0,sprites.size()-1)
+	ship = get_parent().ship
+	type_index = randi_range(0, sprites.size()-1)
 	sprites[type_index].visible = true
 	
 
@@ -15,7 +17,6 @@ func _process(delta: float) -> void:
 
 
 func _on_area_2d_area_entered(_area: Area2D) -> void:
-	var ship = get_parent().ship
 	match type_index:
 		0:
 			ship.straight_shot.number += 1
