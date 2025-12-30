@@ -7,7 +7,7 @@ var straight_shot
 var side_shot
 var diagonal_shot
 var explosion_shot
-var tracking_shot
+var tracker_shot
 
 @onready var game_manager = $".."
 @onready var straight_shot_timer = $StraightTimer
@@ -16,19 +16,20 @@ var tracking_shot
 
 var bullet_prefab
 var explosion_prefab
+var tracker_prefab
 
 func _ready() -> void:
 	straight_shot = Projectile.new()
 	side_shot = Projectile.new()
 	diagonal_shot = Projectile.new()
 	explosion_shot = Explosion.new()
-	tracking_shot = Projectile.new()
+	tracker_shot = Projectile.new()
 	
-	straight_shot.number = 0
-	explosion_shot.number = 1
+	straight_shot.number = 1
 	
 	bullet_prefab = preload("res://Prefabs/bullet.tscn")
 	explosion_prefab = preload("res://Prefabs/explosion.tscn")
+	tracker_prefab = preload("res://Prefabs/tracker_shot.tscn")
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
@@ -37,7 +38,7 @@ func _unhandled_input(event: InputEvent) -> void:
 func shoot(projectile, dir:Vector2):
 	var shot = bullet_prefab.instantiate()
 	shot.instantiate_projectile(projectile, dir, position)
-	get_parent().add_child(shot)
+	game_manager.projectiles.add_child(shot)
 
 func _on_straight_timer_timeout() -> void:
 	for i in straight_shot.number:
@@ -75,6 +76,15 @@ func _on_explosion_timer_timeout() -> void:
 	for i in explosion_shot.number:
 		var shot = explosion_prefab.instantiate()
 		shot.instantiate_projectile(explosion_shot, Vector2.UP, position)
-		get_parent().add_child(shot)
+		game_manager.projectiles.add_child(shot)
 		
 		await get_tree().create_timer(0.5).timeout
+
+
+func _on_tracker_timer_timeout() -> void:
+	for i in tracker_shot.number:
+		var shot = tracker_prefab.instantiate()
+		shot.instantiate_projectile(tracker_shot, Vector2.UP, position)
+		game_manager.projectiles.add_child(shot)
+		
+		await get_tree().create_timer(0.1).timeout

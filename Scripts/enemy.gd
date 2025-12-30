@@ -8,6 +8,8 @@ class_name Enemy
 
 var destroyed = false
 
+@onready var game_manager = $"../.."
+
 func _process(delta: float) -> void:
 	position += Vector2.DOWN * speed * delta
 
@@ -21,7 +23,7 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		
 		if health <= 0:
 			destroyed = true
-			get_parent().score += score
+			game_manager.score += score
 			call_deferred("drop_powerup")
 			queue_free()
 

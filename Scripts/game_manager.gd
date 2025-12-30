@@ -5,6 +5,8 @@ class_name GameManager
 @onready var health_bar = $UI/ShipHealth
 @onready var score_counter = $UI/ScoreCounter
 @onready var enemy_spawn_timer = $EnemySpawnTimer
+@onready var enemy_manager = $EnemyManager
+@onready var projectiles = $Projectile
 
 @export var enemy_weights : Array[int]
 @export var enemies : Array[PackedScene]
@@ -40,7 +42,7 @@ func _on_enemy_spawn_timer_timeout() -> void:
 	new_enemy.position = Vector2(xpos, -100)
 	new_enemy.health *= hp_mult
 	
-	add_child(new_enemy)
+	enemy_manager.add_child(new_enemy)
 
 func get_random_enemy()->PackedScene:
 	var weight_total = 0

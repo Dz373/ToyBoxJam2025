@@ -10,6 +10,7 @@ var direction := Vector2.UP
 var pierce := 0
 var number := 0
 
+
 func _process(delta: float) -> void:
 	position += direction * speed * delta
 
