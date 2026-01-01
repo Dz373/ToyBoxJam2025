@@ -19,8 +19,7 @@ radius = 32.0
 
 [node name="Powerup" type="Node2D" node_paths=PackedStringArray("sprites")]
 script = ExtResource("1_0ks08")
-speed = 100
-sprites = [NodePath("Sprites/Straight"), NodePath("Sprites/Side"), NodePath("Sprites/Diagonal")]
+sprites = [NodePath("Sprites/Straight"), NodePath("Sprites/Side"), NodePath("Sprites/Diagonal"), NodePath("Sprites/Explosion"), NodePath("Sprites/Tracker")]
 
 [node name="Sprites" type="Node2D" parent="."]
 scale = Vector2(0.75, 0.75)
@@ -81,6 +80,20 @@ texture = ExtResource("2_j21wu")
 hframes = 16
 vframes = 16
 frame = 78
+
+[node name="Explosion" type="Sprite2D" parent="Sprites"]
+visible = false
+texture = ExtResource("2_j21wu")
+hframes = 16
+vframes = 16
+frame = 72
+
+[node name="Tracker" type="Sprite2D" parent="Sprites"]
+visible = false
+texture = ExtResource("2_j21wu")
+hframes = 16
+vframes = 16
+frame = 87
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 16

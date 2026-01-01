@@ -23,6 +23,9 @@ var timer = 0:
 		if val > 600:
 			enemy_spawn_timer.wait_time = 1
 			hp_mult = 5
+		elif val > 90:
+			enemy_spawn_timer.wait_time = 3
+			hp_mult = 2
 		elif val > 30:
 			enemy_spawn_timer.wait_time = 4
 			can_spawn[1] = true

@@ -15,7 +15,7 @@ func _process(delta: float) -> void:
 	position += Vector2.DOWN * speed * delta
 
 func _on_timer_timeout() -> void:
-	var ship = get_parent().ship
+	var ship = game_manager.ship
 	var proj = bullet_prefab.instantiate()
 	
 	var dir = (ship.position - position).normalized()

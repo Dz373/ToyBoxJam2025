@@ -36,4 +36,4 @@ func drop_powerup():
 	
 	if val < 10*up_percent:
 		power.position = position
-		get_parent().add_child(power)
+		game_manager.add_child(power)
