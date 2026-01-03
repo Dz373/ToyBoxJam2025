@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://lfkyntprkxbw"]
+
+[ext_resource type="Script" uid="uid://xi0jqanbs5p7" path="res://Scripts/enemy_shooter_2.gd" id="1_obnf2"]
+[ext_resource type="Texture2D" uid="uid://pig006h42f7y" path="res://Assets/tbj2_sprites_16x16_transparent_6-1.png" id="2_xwrrx"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_uegmd"]
+radius = 39.012817
+
+[node name="EnemyShooter" type="Node2D"]
+script = ExtResource("1_obnf2")
+score = 100
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0, 1, 1, 1)
+texture = ExtResource("2_xwrrx")
+hframes = 16
+vframes = 16
+frame = 123
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_uegmd")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

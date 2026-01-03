@@ -1,4 +1,5 @@
 extends Enemy
+class_name Shooter
 
 var bullet
 var bullet_prefab

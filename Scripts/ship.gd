@@ -26,7 +26,6 @@ func _ready() -> void:
 	tracker_shot = Projectile.new()
 	
 	straight_shot.number = 1
-	tracker_shot.number = 1
 	
 	bullet_prefab = preload("res://Prefabs/bullet.tscn")
 	explosion_prefab = preload("res://Prefabs/explosion.tscn")

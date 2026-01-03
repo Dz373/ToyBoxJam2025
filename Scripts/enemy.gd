@@ -7,11 +7,12 @@ class_name Enemy
 @export var up_percent := 0.1
 
 var destroyed = false
+var move_dir = Vector2.DOWN
 
 @onready var game_manager = $"../.."
 
 func _process(delta: float) -> void:
-	position += Vector2.DOWN * speed * delta
+	position += move_dir * speed * delta
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if destroyed:
