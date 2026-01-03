@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://cu8x1ilbngoid"]
+[gd_scene load_steps=5 format=3 uid="uid://cu8x1ilbngoid"]
 
 [ext_resource type="Texture2D" uid="uid://pig006h42f7y" path="res://Assets/tbj2_sprites_16x16_transparent_6-1.png" id="1_3168g"]
 [ext_resource type="Script" uid="uid://brhxveepilgu" path="res://Scripts/bullet.gd" id="1_gglcy"]
+[ext_resource type="AudioStream" uid="uid://chbsdprglvclx" path="res://Assets/Sound/sfxpack_3.wav" id="3_jnuqs"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gglcy"]
 radius = 24.0
@@ -24,6 +25,11 @@ collision_layer = 8
 shape = SubResource("CapsuleShape2D_gglcy")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="Sfxpack3" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_jnuqs")
+volume_db = -6.588
+autoplay = true
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

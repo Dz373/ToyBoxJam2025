@@ -8,4 +8,4 @@ func _on_timer_timeout() -> void:
 	
 	proj.instantiate_projectile(bullet, Vector2.DOWN, position)
 	
-	get_parent().add_child(proj)
+	game_manager.add_child(proj)

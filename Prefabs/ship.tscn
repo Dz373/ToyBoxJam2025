@@ -1,7 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://cesqbjhs8s37a"]
+[gd_scene load_steps=9 format=3 uid="uid://cesqbjhs8s37a"]
 
 [ext_resource type="Texture2D" uid="uid://pig006h42f7y" path="res://Assets/tbj2_sprites_16x16_transparent_6-1.png" id="1_7nyfi"]
 [ext_resource type="Script" uid="uid://bk2lcsd8ak4gd" path="res://Scripts/ship.gd" id="1_88h6h"]
+[ext_resource type="AudioStream" uid="uid://dtnlequ70t8el" path="res://Assets/Sound/sfxpack_56.wav" id="3_ba1si"]
+[ext_resource type="AudioStream" uid="uid://dofm2trdavep" path="res://Assets/Sound/sfxpack_44.wav" id="4_cm1ru"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_eplxj"]
 radius = 8.0
@@ -209,6 +211,12 @@ frame = 67
 libraries = {
 &"": SubResource("AnimationLibrary_eplxj")
 }
+
+[node name="UpgradeSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_ba1si")
+
+[node name="BlastFx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_cm1ru")
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="timeout" from="StraightTimer" to="." method="_on_straight_timer_timeout"]

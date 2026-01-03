@@ -69,9 +69,9 @@ func update_health(hp: int):
 	health += hp
 	game_manager.health_bar.update_hearts(health)
 	$Blast/AnimationPlayer.play("ex")
+	$BlastFx.play()
 	
 	invs = true
-	game_manager.spawn_enemies = false
 	await get_tree().create_timer(0.5).timeout
 	invs = false
 	
@@ -97,3 +97,6 @@ func _on_tracker_timer_timeout() -> void:
 		game_manager.projectiles.add_child(shot)
 		
 		await get_tree().create_timer(0.1).timeout
+
+func upgrade_sound():
+	$UpgradeSound.play()

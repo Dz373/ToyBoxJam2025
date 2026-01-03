@@ -18,4 +18,5 @@ func trigger_explosion():
 	exploding = true
 	speed = 0
 	$Area2D/CollisionShape2D.shape.radius = 24
+	$BlastFx.play()
 	blast_animation.play("ex")

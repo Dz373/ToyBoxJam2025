@@ -27,5 +27,5 @@ func _on_area_2d_area_entered(_area: Area2D) -> void:
 			ship.explosion_shot.number += 1
 		4:
 			ship.tracker_shot.number += 1
-		
+	ship.upgrade_sound()
 	queue_free()

@@ -25,6 +25,7 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		if health <= 0:
 			destroyed = true
 			game_manager.score += score
+			game_manager.enemy_death()
 			call_deferred("drop_powerup")
 			queue_free()
 

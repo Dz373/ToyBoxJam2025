@@ -22,25 +22,26 @@ var timer = 0:
 	set(val):
 		timer = val
 		
-		if val > 600:
+		if val > 400:
 			enemy_spawn_timer.wait_time = 1
 			wave_spawn_timer.wait_time = 15
-			hp_mult = 5
-			wave_num = 3
+			hp_mult = 8
+			wave_num = 4
 			
 		elif val > 300:
 			enemy_weights[0] = 1
 			enemy_spawn_timer.wait_time = 2
 			hp_mult = 4
+			wave_num = 3
 		
 		elif val > 180:
 			hp_mult = 3
-			wave_num = 2
 		
 		elif val > 90:
 			enemy_spawn_timer.wait_time = 3
-			hp_mult = 2
 			can_spawn[3] = true
+			wave_num = 2
+			hp_mult = 2
 		
 		elif val > 60:
 			can_spawn[2] = true
@@ -52,6 +53,7 @@ var timer = 0:
 var hp_mult = 1
 var spawn_enemies := true
 var wave_num = 1
+var end = false
 
 func _process(delta: float) -> void:
 	timer += delta
@@ -90,6 +92,8 @@ func get_random_enemy()->PackedScene:
 
 
 func _on_wave_spawner_timeout() -> void:
+	if end:
+		return
 	var random = randi_range(0,2)
 	match random:
 		0:
@@ -142,6 +146,8 @@ func huge_wave():
 func game_over():
 	score_counter.visible = false
 	game_over_menu.visible = true
+	end = true
+	spawn_enemies = false
 	
 	$UI/GameOver/Score.text = "Score: " + str(score)
 	$UI/GameOver/Timer.text = "Time: " + get_time_string(timer)
@@ -154,3 +160,10 @@ func get_time_string(time: int)->String:
 	var minute = time / 60
 	var second = time % 60
 	return str(minute) + ":" + str(second)
+
+func enemy_death():
+	$EnemyDeath.play()
+
+func _on_music_finished() -> void:
+	$Music.play()
+	print("audio loop")
