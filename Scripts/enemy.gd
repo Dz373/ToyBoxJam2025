@@ -35,6 +35,6 @@ func drop_powerup():
 	var power = preload("res://Prefabs/powerup.tscn").instantiate()
 	var val = randi_range(1,10)
 	
-	if val < 10*up_percent:
+	if val <= 10*up_percent:
 		power.position = position
 		game_manager.add_child(power)

@@ -17,6 +17,7 @@ var tracker_shot
 var bullet_prefab
 var explosion_prefab
 var tracker_prefab
+var invs = false
 
 func _ready() -> void:
 	straight_shot = Projectile.new()
@@ -63,13 +64,21 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 	update_health(-1)
 
 func update_health(hp: int):
-	if health + hp > 3:
+	if invs:
 		return
 	health += hp
 	game_manager.health_bar.update_hearts(health)
+	$Blast/AnimationPlayer.play("ex")
+	
+	invs = true
+	game_manager.spawn_enemies = false
+	await get_tree().create_timer(0.5).timeout
+	invs = false
 	
 	if health <= 0:
 		print("Game Over")
+		game_manager.game_over()
+		queue_free()
 
 
 func _on_explosion_timer_timeout() -> void:

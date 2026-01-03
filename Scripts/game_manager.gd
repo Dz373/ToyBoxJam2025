@@ -8,6 +8,7 @@ class_name GameManager
 @onready var wave_spawn_timer = $WaveSpawner
 @onready var enemy_manager = $EnemyManager
 @onready var projectiles = $Projectile
+@onready var game_over_menu = $UI/GameOver
 
 @export var enemy_weights : Array[int]
 @export var enemies : Array[PackedScene]
@@ -28,10 +29,11 @@ var timer = 0:
 			wave_num = 3
 			
 		elif val > 300:
+			enemy_weights[0] = 1
 			enemy_spawn_timer.wait_time = 2
 			hp_mult = 4
 		
-		elif val > 150:
+		elif val > 180:
 			hp_mult = 3
 			wave_num = 2
 		
@@ -108,19 +110,21 @@ func line_wave():
 	
 
 func diagonal_wave():
+	var enemy = enemies[0]
 	for i in range(wave_num*3):
-		var new_enemy = enemies[0].instantiate()
+		if timer > 300:
+			enemy = enemies[3]
+		var new_enemy = enemy.instantiate()
 		new_enemy.health *= hp_mult
 		new_enemy.position = Vector2(0, 0)
 		new_enemy.move_dir = Vector2(1,1).normalized()
 		enemy_manager.add_child(new_enemy)
 		
-		new_enemy = enemies[0].instantiate()
+		new_enemy = enemy.instantiate()
 		new_enemy.position = Vector2(1152, 0)
 		new_enemy.move_dir = Vector2(-1,1).normalized()
 		enemy_manager.add_child(new_enemy)
 		
-
 		await get_tree().create_timer(1).timeout
 
 func huge_wave():
@@ -134,3 +138,19 @@ func huge_wave():
 		enemy_manager.add_child(new_enemy)
 
 		await get_tree().create_timer(0.5).timeout
+
+func game_over():
+	score_counter.visible = false
+	game_over_menu.visible = true
+	
+	$UI/GameOver/Score.text = "Score: " + str(score)
+	$UI/GameOver/Timer.text = "Time: " + get_time_string(timer)
+
+
+func _on_retry_button_down() -> void:
+	get_tree().reload_current_scene()
+
+func get_time_string(time: int)->String:
+	var minute = time / 60
+	var second = time % 60
+	return str(minute) + ":" + str(second)
