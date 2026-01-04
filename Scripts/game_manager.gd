@@ -111,6 +111,7 @@ func line_wave():
 			new_enemy.health *= hp_mult
 		
 			enemy_manager.add_child(new_enemy)
+		await get_tree().create_timer(1).timeout
 	
 
 func diagonal_wave():
@@ -159,7 +160,7 @@ func _on_retry_button_down() -> void:
 func get_time_string(time: int)->String:
 	var minute = time / 60
 	var second = time % 60
-	return str(minute) + ":" + str(second)
+	return "%d:%02d" % [minute, second]
 
 func enemy_death():
 	$EnemyDeath.play()

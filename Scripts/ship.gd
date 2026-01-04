@@ -32,9 +32,8 @@ func _ready() -> void:
 	explosion_prefab = preload("res://Prefabs/explosion.tscn")
 	tracker_prefab = preload("res://Prefabs/tracker_shot.tscn")
 
-func _unhandled_input(event: InputEvent) -> void:
-	if event is InputEventMouseMotion:
-		position = get_global_mouse_position()
+func _process(_delta: float) -> void:
+	position = get_global_mouse_position()
 
 func shoot(projectile, dir:Vector2):
 	var shot = bullet_prefab.instantiate()
